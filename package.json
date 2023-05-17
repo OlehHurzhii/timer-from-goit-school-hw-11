@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "",
+  "homepage": "https://olehhurzhii.github.io/timer-from-goit-school-hw-11/",
   "scripts": {
     "start": "webpack serve --open --mode development",
     "build-dev": "webpack --mode development",
