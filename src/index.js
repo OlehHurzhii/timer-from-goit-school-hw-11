@@ -1,6 +1,7 @@
 import './main.scss';
 
 class CountdownTimer {
+
     constructor({ selector, targetDate }) {
         this.selector = selector;
         this.targetDate = targetDate;
@@ -32,18 +33,32 @@ class CountdownTimer {
                 return;
             }
         }, 1000);
-    }
-}
+    };
 
-const blackFriday = new CountdownTimer({
-    selector: "#timer-1",
-    targetDate: Date.parse('Mon, 16 May 2023 00:00:00')
-});
+    stop() {
+        clearInterval(this.timerIntervalId);
+    };
+
+    clear() {
+        clearInterval(this.timerIntervalId);
+        const daysEl = document.querySelector('[data-value="days"]').textContent = '00';
+        const hoursEl = document.querySelector('[data-value="hours"]').textContent = '00';
+        const minsEl = document.querySelector('[data-value="mins"]').textContent = '00';
+        const secsEl = document.querySelector('[data-value="secs"]').textContent = '00';
+    }
+};
 
 const refs = {
     startButton: document.querySelector('.button__start'),
     stopButton: document.querySelector('.button__stop'),
-}
+    clearButton: document.querySelector('.button__clear'),
+};
 
-refs.startButton.addEventListener('click', blackFriday.start);
-// refs.stopButton.addEventListener('click', blackFriday.stop);
+refs.startButton.addEventListener('click', () => blackFriday.start());
+refs.stopButton.addEventListener('click', () => blackFriday.stop());
+refs.clearButton.addEventListener('click', () => blackFriday.clear());
+
+const blackFriday = new CountdownTimer({
+    selector: "#timer-1",
+    targetDate: Date.parse('26 May 2023 00:00:00')
+});
